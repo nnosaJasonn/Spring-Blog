@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <div th:include="/partials/master :: bootstrap"></div>
+</head>
+<body>
+<div th:include="/partials/master :: navbar"></div>
+
+
+<form method="post" action="">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input type="text" class="form-control" th:value="${post.title}" name="title" id="exampleFormControlInput1" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea class="form-control" rows="10" name="body" id="body"><span th:remove="tag" th:text="${post.body}"></span></textarea>
+    </div>
+    <label for="delete">Delete this post</label>
+    <input id="delete" type="checkbox" name="delete"/>
+    <input type="hidden" name="post" th:value="${id}"/>
+    <button type="submit">Submit</button>
+</form>
+
+
+<div th:include="/partials/master :: scripts"></div>
+
+</body>
+</html>

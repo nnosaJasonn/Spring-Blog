@@ -9,11 +9,16 @@
 <div th:include="/partials/master :: navbar"></div>
 
     <h1>Here's post number <span th:text="${id}"></span></h1>
-
+<div class="container">
     <div class="card">
-    <h1 th:text="${post.title}"></h1>
-    <p th:text="${post.body}"></p>
+        <h3 class="card-header" th:text="${post.title}"></h3>
+        <p class="card-body" th:text="${post.body}"></p>
+        <form action="/posts/edit">
+            <input name="post" th:value="${id}" type="hidden"/>
+            <button type="submit">Edit this post</button>
+        </form>
     </div>
+</div>
 <div th:include="/partials/master :: scripts"></div>
 
 </body>
