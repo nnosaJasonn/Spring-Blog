@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <div th:include="/partials/master :: bootstrap"></div>
+</head>
+<body>
+<div th:include="/partials/master :: navbar"></div>
+
+<ul>
+    <li><a href="/roll-dice?guess=1">1</a>
+    </li>
+    <li><a href="/roll-dice?guess=2">2</a>
+    </li>
+    <li><a href="/roll-dice?guess=3">3</a>
+    </li>
+    <li><a href="/roll-dice?guess=4">4</a>
+    </li>
+    <li><a href="/roll-dice?guess=5">5</a>
+    </li>
+    <li><a href="/roll-dice?guess=6">6</a>
+    </li>
+</ul>
+
+<div th:if="${guess!=0}">
+    <h3 th:text="${correct}"></h3>
+</div>
+<div th:if="${guess==0}">
+    <h3 >Click a number above to see guess the roll of a die</h3>
+</div>
+
+<div th:include="/partials/master :: scripts"></div>
+</body>
+</html>
