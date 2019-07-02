@@ -7,16 +7,16 @@
 </head>
 <body>
 <div th:include="/partials/master :: navbar"></div>
-<form method="POST" action="/posts/create">
+<form method="POST" action="/posts/create" th:object="${post}">
     <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
-        <input type="text" class="form-control"  name="title" id="exampleFormControlInput1" />
+        <input type="text" class="form-control"  th:field="*{title}" id="exampleFormControlInput1" />
     </div>
 
 
     <div class="form-group">
         <label for="body">Body</label>
-        <textarea class="form-control" rows="10" name="body" id="body"></textarea>
+        <textarea class="form-control" rows="10" th:field="*{body}" id="body"></textarea>
     </div>
 
     <button type="submit">Submit</button>

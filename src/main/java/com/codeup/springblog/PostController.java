@@ -4,17 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Controller
 public class PostController {
 
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao){
+    private final UserRepository userDao;
+
+
+    public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -42,13 +43,16 @@ public class PostController {
 
 
     @GetMapping("/posts/create")
-    public String createPostForm(){
+    public String createPostForm(Model model){
+        Post post = new Post();
+        model.addAttribute("post", post);
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPostForm(@RequestParam(value="title", required=false) String title, @RequestParam(value="body", required=false) String body){
-        Post post = new Post(title, body);
+    public String createPostForm(@ModelAttribute Post post){
+        User user = userDao.findOne(1L);
+        post.setAuthor(user);
         postDao.save(post);
         return "redirect:/posts";
     }
@@ -59,24 +63,21 @@ public class PostController {
     public String editPostForm(@RequestParam(value="post", required=false) long id, Model model){
         Post post = postDao.findOne(id);
         model.addAttribute("post", post);
-        model.addAttribute("id", id);
         return "posts/edit";
     }
 
     @PostMapping("/posts/edit")
-    public String editedPost(@RequestParam(value="title", required=false) String title,
-                             @RequestParam(value="body", required=false) String body,
-                             @RequestParam(value="post", required=false) long id,
+    public String editedPost(@ModelAttribute Post post,
                              @RequestParam(value="delete", required=false) String delete){
 
         if(delete != null){
-            postDao.delete(id);
+            postDao.delete(post.getId());
         } else {
 
-            Post updatePost = postDao.findOne(id);
-            updatePost.setTitle(title);
-            updatePost.setBody(body);
-            postDao.save(updatePost);
+//            Post updatePost = postDao.findOne(id);
+            post.setTitle(post.getTitle());
+            post.setBody(post.getBody());
+            postDao.save(post);
         }
             return "redirect:/posts";
     }
