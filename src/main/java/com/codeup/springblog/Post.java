@@ -1,6 +1,9 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.services.Category;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -15,6 +18,14 @@ public class Post {
     private String body;
     @ManyToOne
     private User author;
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name="posts_categories",
+            joinColumns = {@JoinColumn(name="post_id")},
+            inverseJoinColumns = {@JoinColumn(name="category_id")}
+    )
+    private List<Category> categories;
 
 
     public Post() {

@@ -13,7 +13,7 @@
     <div class="card">
         <h3 class="card-header" th:text="${post.title}"></h3>
         <p class="card-body" th:text="${post.body}"></p>
-        <form action="/posts/edit">
+        <form th:action="@{/posts/edit}">
             <input name="post" th:value="${id}" type="hidden"/>
             <button type="submit">Edit this post</button>
         </form>

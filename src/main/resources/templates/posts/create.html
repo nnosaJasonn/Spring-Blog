@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:include="/partials/master :: navbar"></div>
-<form method="POST" action="/posts/create" th:object="${post}">
+<form method="POST" th:action="@{/posts/create}" th:object="${post}">
     <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
         <input type="text" class="form-control"  th:field="*{title}" id="exampleFormControlInput1" />
@@ -20,6 +20,7 @@
     </div>
 
     <button type="submit">Submit</button>
+
 </form>
 
 

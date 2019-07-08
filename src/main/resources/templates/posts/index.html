@@ -14,7 +14,7 @@
                 <h3 class="card-header" th:text="${post.title}"></h3>
                 <p class="card-body" th:text="${post.body}"></p>
                 <p class="text-right mr-4" th:text="${post.author.email}"></p>
-                <form method="post" action="/posts">
+                <form method="post" th:action="@{/posts}">
                     <input name="post" th:value="${post.id}" type="hidden"/>
                     <button type="submit">View Post</button>
                 </form>

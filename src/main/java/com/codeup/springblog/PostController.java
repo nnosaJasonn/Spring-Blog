@@ -1,5 +1,7 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +14,12 @@ public class PostController {
 
     private final UserRepository userDao;
 
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao){
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -51,9 +55,10 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPostForm(@ModelAttribute Post post){
-        User user = userDao.findOne(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setAuthor(user);
         postDao.save(post);
+        emailService.prepareAndSend(post, "Post " + post.getTitle(), "You" + post.getBody());
         return "redirect:/posts";
     }
 
