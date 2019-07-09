@@ -18,7 +18,12 @@
         <label for="body">Body</label>
         <textarea class="form-control" rows="10" th:field="*{body}" id="body"></textarea>
     </div>
-
+    <div th:each="category : ${categories}">
+        <div class="form-group">
+            <input  th:id="${category.title}" type="checkbox" name="categories" th:value="${category.id}"/>
+            <label th:for="${category.title}" th:text="${category.title}"></label>
+        </div>
+    </div>
     <button type="submit">Submit</button>
 
 </form>

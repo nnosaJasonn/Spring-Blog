@@ -12,8 +12,12 @@
     <div th:each="post : ${posts}">
             <div class="my-4 card">
                 <h3 class="card-header" th:text="${post.title}"></h3>
-                <p class="card-body" th:text="${post.body}"></p>
-                <p class="text-right mr-4" th:text="${post.author.email}"></p>
+                <p class="ml-4">Author: <a th:href="@{'/users/' + ${post.author.username}}"><span class=" card-body text-right mx-4" th:text="${post.author.username}"></span></a></p>
+                <pre><p class="card-body" th:text="${post.body}"></p></pre>
+                <p class="ml-4"> Tags:
+                    <span class="text-left ml-4" th:each="category : ${post.categories}"><a th:href="@{'/categories/' + ${category.id}}"><small class="d-inline" th:text="${category.title}"></small></a></span>
+
+                </p>
                 <form method="post" th:action="@{/posts}">
                     <input name="post" th:value="${post.id}" type="hidden"/>
                     <button type="submit">View Post</button>

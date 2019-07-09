@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <div th:include="/partials/master :: bootstrap"></div>
+</head>
+<body>
+<div th:include="/partials/master :: navbar"></div>
+<h1>Here's all the posts with the <span th:text="${cat.title}"></span> tag:</h1>
+<div class="container">
+    <div th:each="post : ${posts}">
+        <div class="my-4 card">
+            <h3 class="card-header" th:text="${post.title}"></h3>
+            <p class="ml-4">Author:  <a th:href="@{'/users/' + ${post.author.username}}"><span class=" card-body text-right mx-4" th:text="${post.author.email}"></span></a></p>
+            <pre><p class="card-body" th:text="${post.body}"></p></pre>
+            <p class="ml-4"> Tags:
+                <span class="text-left ml-4" th:each="category : ${post.categories}"><a th:href="@{'/categories/' + ${category.id}}"><small class="d-inline" th:text="${category.title}"></small></a></span>
+
+            </p>
+            <form method="post" th:action="@{/posts}">
+                <input name="post" th:value="${post.id}" type="hidden"/>
+                <button type="submit">View Post</button>
+            </form>
+        </div>
+    </div>
+    <div th:include="/partials/master :: scripts"></div>
+</div>
+</body>
+</html>

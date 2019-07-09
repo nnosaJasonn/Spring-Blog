@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <div th:include="/partials/master :: bootstrap"></div>
+</head>
+<body>
+<div th:include="/partials/master :: navbar"></div>
+
+<h1>Posts</h1>
+<div class="container" id="posts"></div>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"
+>
+</script>
+
+<script>
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+</script>
+<script src="/js/posts.js"></script>
+<!-- include the JS file with the AJAX request -->
+</body>
+</html>

@@ -1,6 +1,8 @@
-package com.codeup.springblog;
+package com.codeup.springblog.Models;
 
-import com.codeup.springblog.services.Category;
+import com.codeup.springblog.Models.User;
+import com.codeup.springblog.Models.Category;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
     @ManyToOne
+    @JsonManagedReference
     private User author;
 
     @ManyToMany(cascade=CascadeType.ALL)
@@ -25,6 +28,7 @@ public class Post {
             joinColumns = {@JoinColumn(name="post_id")},
             inverseJoinColumns = {@JoinColumn(name="category_id")}
     )
+    @JsonManagedReference
     private List<Category> categories;
 
 
@@ -72,5 +76,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }

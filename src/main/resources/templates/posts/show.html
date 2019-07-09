@@ -12,7 +12,12 @@
 <div class="container">
     <div class="card">
         <h3 class="card-header" th:text="${post.title}"></h3>
-        <p class="card-body" th:text="${post.body}"></p>
+        <p class="ml-4">Author: <a th:href="@{'/users/' + ${post.author.username}}"><span class=" card-body text-right mx-4" th:text="${post.author.username}"></span></a></p>
+        <pre><p class="card-body" th:text="${post.body}"></p></pre>
+        <p class="ml-4"> Tags:
+            <span class="text-left ml-4" th:each="category : ${post.categories}"><a th:href="@{'/categories/' + ${category.id}}"><small class="d-inline" th:text="${category.title}"></small></a></span>
+
+        </p>
         <form th:action="@{/posts/edit}">
             <input name="post" th:value="${id}" type="hidden"/>
             <button type="submit">Edit this post</button>
