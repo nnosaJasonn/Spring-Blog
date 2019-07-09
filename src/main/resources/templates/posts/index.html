@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <div th:include="/partials/master :: bootstrap"></div>
+    <div th:include="partials/master :: bootstrap"></div>
 </head>
 <body>
-<div th:include="/partials/master :: navbar"></div>
+<div th:include="partials/master :: navbar"></div>
     <h1>Here's all the posts</h1>
 <div class="container">
     <div th:each="post : ${posts}">
@@ -24,7 +24,7 @@
                 </form>
             </div>
         </div>
-    <div th:include="/partials/master :: scripts"></div>
+    <div th:include="partials/master :: scripts"></div>
 </div>
 </body>
 </html>

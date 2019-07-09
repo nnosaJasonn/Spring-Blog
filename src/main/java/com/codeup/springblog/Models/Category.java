@@ -1,6 +1,5 @@
 package com.codeup.springblog.Models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
