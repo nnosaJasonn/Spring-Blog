@@ -116,7 +116,7 @@ public class PostController {
     public String editPostForm(@RequestParam(value="post", required=false) long id, Model model){
         Post post = postDao.findOne(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (post.getAuthor() != user) {
+        if (!post.getAuthor().getEmail().equals(user.getEmail())) {
             return "redirect:/posts";
         } else {
             model.addAttribute("post", post);
