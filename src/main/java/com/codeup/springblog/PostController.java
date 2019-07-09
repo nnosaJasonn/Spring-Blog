@@ -89,7 +89,7 @@ public class PostController {
         post.setAuthor(user);
         postDao.save(post);
         emailService.prepareAndSend(post, "Post " + post.getTitle(), "You" + post.getBody());
-        return "redirect:/posts";
+        return "redirect:posts";
     }
 
     @GetMapping("/users/{username}")
