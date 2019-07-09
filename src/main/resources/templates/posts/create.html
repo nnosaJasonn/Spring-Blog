@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <div th:include="/partials/master :: bootstrap"></div>
+    <div th:include="partials/master :: bootstrap"></div>
 </head>
 <body>
-<div th:include="/partials/master :: navbar"></div>
+<div th:include="partials/master :: navbar"></div>
 <form method="POST" th:action="@{/posts/create}" th:object="${post}">
     <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
@@ -29,7 +29,7 @@
 </form>
 
 
-<div th:include="/partials/master :: scripts"></div>
+<div th:include="partials/master :: scripts"></div>
 
 </body>
 </html>
