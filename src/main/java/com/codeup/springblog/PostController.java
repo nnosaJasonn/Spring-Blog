@@ -89,7 +89,7 @@ public class PostController {
         post.setAuthor(user);
         postDao.save(post);
         emailService.prepareAndSend(post, "Post " + post.getTitle(), "You" + post.getBody());
-        return "redirect:posts";
+        return "redirect:/posts";
     }
 
     @GetMapping("/users/{username}")
@@ -115,8 +115,13 @@ public class PostController {
     @GetMapping("/posts/edit")
     public String editPostForm(@RequestParam(value="post", required=false) long id, Model model){
         Post post = postDao.findOne(id);
-        model.addAttribute("post", post);
-        return "posts/edit";
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (post.getAuthor() != user) {
+            return "redirect:/posts";
+        } else {
+            model.addAttribute("post", post);
+            return "posts/edit";
+        }
     }
 
     @PostMapping("/posts/edit")

@@ -7,6 +7,10 @@
 </head>
 <body>
 <div th:include="partials/master :: navbar"></div>
+
+<div th:include="partials/master :: jumbotron"></div>
+
+
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="username">Username</label>

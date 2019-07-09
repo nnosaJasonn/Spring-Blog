@@ -7,6 +7,10 @@
 </head>
 <body>
 <div th:include="partials/master :: navbar"></div>
+
+<div th:include="partials/master :: jumbotron"></div>
+
+
 <h1>Here's all <span th:text="${user.username}"></span>'s posts</h1>
 <div class="container">
     <div th:each="post : ${posts}">

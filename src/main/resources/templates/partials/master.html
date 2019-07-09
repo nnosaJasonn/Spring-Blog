@@ -5,13 +5,32 @@
     <title>Title</title>
     <div th:fragment="bootstrap">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <style>
+            body{
+                background-image: url("https://source.unsplash.com/random");
+               background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            .card{
+                background:rgba(128, 128, 128, 0.7);
+            }
+            .jumbotron{
+                background:rgba(128, 128, 128, 0.7);
+                color: rgb(123, 178, 217);
+            }
+            .indexcard{
+                height: 30rem;
+                overflow-y: auto;
+            }
+        </style>
     </div>
 
 </head>
 <body>
 
 <nav th:fragment="navbar">
-    <ul class="nav bg-light">
+    <ul class="nav fixed-top bg-warning">
         <li class="nav-item">
             <a class="nav-link text-dark" th:href="@{/}">Codeup Blog</a>
         </li>
@@ -29,11 +48,20 @@
         </li>
         <li class="nav-item">
             <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                <button class="btn-link text-dark btn"  >Logout</button>
             </form>
         </li>
     </ul>
 </nav>
+
+<div th:fragment="jumbotron">
+    <div class="mt-3 pt-5 jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <h1>Blogonauts!</h1>
+            <p class="lead">All the thoughts you'd like to record</p>
+        </div>
+    </div>
+</div>
 
 
 

@@ -7,7 +7,11 @@
 </head>
 <body>
 <div th:include="partials/master :: navbar"></div>
-<h1>Log In</h1>
+
+<div th:include="partials/master :: jumbotron"></div>
+
+
+
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
@@ -15,14 +19,23 @@
     You have been logged out.
 </div>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
+<div class="container">
+    <div class="card text-center my-4">
+        <h1 class="card-header">Log In</h1>
+    <form th:action="@{/login}" method="post">
+       <div class="form-group card-body">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" />
+       </div>
+        <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+        </div>
+        <input type="submit" value="Log In" />
+    </form>
+    </div>
+</div>
     <div th:include="partials/master :: scripts"></div>
 
-</form>
 </body>
 </html>

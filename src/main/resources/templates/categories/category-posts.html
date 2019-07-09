@@ -7,6 +7,10 @@
 </head>
 <body>
 <div th:include="partials/master :: navbar"></div>
+
+<div th:include="partials/master :: jumbotron"></div>
+
+
 <h1>Here's all the posts with the <span th:text="${cat.title}"></span> tag:</h1>
 <div class="container">
     <div th:each="post : ${posts}">
