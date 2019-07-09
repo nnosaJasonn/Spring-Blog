@@ -18,7 +18,6 @@ public class Category {
     private String title;
 
     @ManyToMany(mappedBy = "categories")
-    @JsonBackReference
     private List<Post> posts;
 
     public long getId() {

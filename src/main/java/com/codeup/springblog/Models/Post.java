@@ -19,7 +19,7 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
     @ManyToOne
-    @JsonManagedReference
+
     private User author;
 
     @ManyToMany(cascade=CascadeType.ALL)
@@ -28,7 +28,7 @@ public class Post {
             joinColumns = {@JoinColumn(name="post_id")},
             inverseJoinColumns = {@JoinColumn(name="category_id")}
     )
-    @JsonManagedReference
+
     private List<Category> categories;
 
 
