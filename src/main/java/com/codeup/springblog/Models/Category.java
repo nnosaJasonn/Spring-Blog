@@ -1,5 +1,6 @@
 package com.codeup.springblog.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Category {
     private String title;
 
     @ManyToMany(mappedBy = "categories")
+    @JsonBackReference
     private List<Post> posts;
 
     public long getId() {

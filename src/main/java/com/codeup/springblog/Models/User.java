@@ -26,6 +26,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "author")
+    @JsonBackReference
     private List<Post> posts;
 
     public User() {
