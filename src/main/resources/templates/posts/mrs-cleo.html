@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+
+<style>
+    #backgroundimage{
+        height: 500px;
+        background-image: url("/img/campaign_misscleo-20160726093844190.jpg");
+        background-size: 100% 100%;
+        /*opacity: .5;*/
+    }
+
+    .container{
+        width: 17em;
+        height: 17em;
+    }
+    .miss-cleo{
+        display: none;
+    }
+
+
+</style>
+</head>
+<body>
+
+
+<audio id="myAudio">
+    <source src="/sounds/baby-cakes.mp3" type="audio/ogg"/>
+</audio>
+<audio id="herAudio">
+    <source src="/sounds/believe-cleo.mp3" type="audio/ogg"/>
+</audio>
+<audio id="bad-move">
+    <source src="/sounds/dont-do-it.mp3" type="audio/ogg"/>
+</audio>
+
+<div id="backgroundimage">
+
+</div>
+<div class="jumbotron">
+    <h1 class="display-4">Truth Table Generator! </h1>
+    <p class="lead">Enter variables separated by commas. Then enter a proposition (currently limited to one connective (more to come!)). </p>
+    <hr class="my-4"/>
+    <input id="name_counter" class='mx-3' autofocus="true" type="text"/>
+    <button id="addNames">add names</button>
+    <p id="hover" class="d-inline mx-1 text-danger"><sup>Powered by Miss Cleo</sup><img src="/hqdefault.jpg" class="miss-cleo mx-2" id="miss-cleo" alt=""/></p>
+</div>
+
+
+
+
+<!--<label for="name_counter">Please input variables separated by commas:</label>-->
+
+
+<div class="border bg-light rounded text-center container">
+    <div>
+        <input class="border m-2 input-field" id="Input_Field" type="text" name="equation"/>
+    </div>
+    <div id ='names'>
+
+    </div>
+    <form action="">
+        <div class="">
+            <button class="btn m-1 btn-dark connective_btn" id="or" onclick="input(' v ')" value="||" type="button">or</button>
+            <button class="btn m-1 btn-dark connective_btn" id="if_then" onclick="input(' -> ')" value="if" type="button">-></button>
+            <button class="btn m-1 btn-dark connective_btn" id="onlyif" onclick="input(' iff ')" value="iff" type="button">iff</button>
+            <button class="btn m-1 btn-dark connective_btn" id="and" onclick="input(' + ')" value="+" type="button">and</button>
+
+        </div>
+        <div >
+            <button class="btn m-1 btn-dark connective_btn" id="not" onclick="input('~')" value="!/mrs_cleo" type="button">~</button>
+            <button class="btn m-1 btn-dark operator_btn" id="openParenthesis" onclick="input(',(')" value="(" type="button">(</button>
+            <button class="btn m-1 btn-dark operator_btn" id="closeParenthesis" onclick="input('),')" value=")" type="button">)</button>
+            <button class="btn m-1 btn-dark operator_btn" id="entails" onclick="input(' ⊨ ')" value="⊨" type="button">⊨</button>
+
+        </div>
+    </form>
+    <button class="w-100 align-self-baseline" type='reset' id="clear" onclick="document.getElementById('Input_Field').value=''" value="reset">Clear and Start over</button>
+    <button id="generate" class="w-100 align-self-baseline" type="submit">Free Psychic Reading</button>
+</div>
+
+<div >
+    <table class="table table-bordered table-striped" id="truthTable">
+        <thead class="thead-dark" id="header"></thead>
+
+    </table>
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"
+>
+</script>
+<!-- include the JS file with the AJAX request -->
+<script src="/js/Mrs_Cleo.js"></script>
+</body>
+</html>

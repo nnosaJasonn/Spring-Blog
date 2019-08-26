@@ -21,6 +21,52 @@
             html += '</div>';
         });
         $('#posts').html(html);
+
+
+        var ultimateArray = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight',  'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter']
+        var keyArray = [];
+        $(document).keyup(function(event){
+            console.log(event.key);
+            keyArray.push(event.key);
+            if (event.key === 'Meta' || event.key === 'r'|| event.key ==='Alt'){
+                keyArray.pop()
+            }
+            if(keyArray.length === ultimateArray.length){
+                if (compareArray()){
+                    alert('KONAMI!!!!!');
+                    changeEverything();
+                }
+                else{
+                    keyArray.shift();
+                }
+            }
+
+            console.log(keyArray);
+        });
+
+        function compareArray() {
+            var ultString = ultimateArray.join(',');
+            var keyString = keyArray.join(',');
+
+            if(ultString === keyString){
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function changeEverything(){
+            console.log("here");
+            window.location.href = "http://localhost:8080/mrs_cleo";
+        }
     });
+
+
+
+
+
+
+
 })(jQuery);
 

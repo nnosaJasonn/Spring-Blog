@@ -18,8 +18,8 @@ public class Post {
     private String title;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
-    @ManyToOne
 
+    @ManyToOne
     private User author;
 
     @ManyToMany(cascade=CascadeType.ALL)

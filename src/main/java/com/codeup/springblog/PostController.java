@@ -34,22 +34,27 @@ public class PostController {
         this.catDao = catDao;
     }
 
-//    @GetMapping("/posts.json")
-//    public @ResponseBody Iterable<Post> viewAllPostsInJSONFormat() {
-//        return postDao.findAll();
-//    }
-//
-//    @GetMapping("/posts")
-//    public String viewAllPostsWithAjax() {
-//        return "posts/ajax";
-//    }
+    @GetMapping("/posts.json")
+    public @ResponseBody Iterable<Post> viewAllPostsInJSONFormat() {
+        return postDao.findAll();
+    }
 
     @GetMapping("/posts")
-    public String posts(Model model){
-        Iterable<Post> posts = postDao.findAll();
-        model.addAttribute("posts", posts);
-        return "posts/index";
+    public String viewAllPostsWithAjax() {
+        return "posts/ajax";
     }
+
+    @GetMapping("/mrs_cleo")
+    public String generateTruth(){
+        return "posts/mrs-cleo";
+    }
+
+//    @GetMapping("/posts")
+//    public String posts(Model model){
+//        Iterable<Post> posts = postDao.findAll();
+//        model.addAttribute("posts", posts);
+//        return "posts/index";
+//    }
 
     @PostMapping("/posts")
     public String posts(@RequestParam(name="post") long id){
