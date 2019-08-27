@@ -1,3 +1,5 @@
+// old code from the beginning of my JS days, needs a MAJOR refactor
+
 var inputArray =[];
 var inputArrToStr;
 var nameArray = '';
