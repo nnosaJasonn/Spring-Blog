@@ -29,6 +29,18 @@ public class User {
     @JsonBackReference
     private List<Post> posts;
 
+    @OneToMany(mappedBy="mom")
+    @JsonBackReference
+    private List<Pump> pumps;
+
+    public List<Pump> getPumps() {
+        return pumps;
+    }
+
+    public void setPumps(List<Pump> pumps) {
+        this.pumps = pumps;
+    }
+
     public User() {
     }
 
