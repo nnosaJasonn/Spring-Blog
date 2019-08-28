@@ -2,7 +2,7 @@
 
     var today = new Date();
 var hh = String(today.getHours());
-var mm = String(today.getMinutes());
+var min = String(today.getMinutes());
     console.log(hh);
     console.log(mm);
     var dd = String(today.getDate()).padStart(2, '0');
@@ -17,26 +17,29 @@ document.getElementById("month").value = mm;
 document.getElementById("day").value = dd;
 document.getElementById("year").value= yyyy;
 document.getElementById("hours").value=hh;
-document.getElementById("minutes").value = mm;
+document.getElementById("minutes").value = min;
     console.log(today);
-    today = "08-26-2019";
-    var request = $.get({
-        'url': "/"+today+'/pumps.json',
-    });
-    request.done(function (pumps) {
-
-        console.log(pumps);
-        var html = '';
-        pumps.forEach(function (pump) {
-            html += `<td>${pump.date}</td>`;
-            html += `<td>${pump.time}</td>`;
-            html += `<td>${pump.volumeInmL} mL</td>`;
+    // today = "08-26-2019";
+    function displayMilk() {
+        var request = $.get({
+            'url': "/" + today + '/pumps.json',
         });
-        $('#milk-data').html(html);
+        request.done(function (pumps) {
 
-    });
+            console.log(pumps);
+            var html = '';
+            pumps.forEach(function (pump) {
+                html += `<tr></tr></th><td>${pump.date}</td>`;
+                html += `<td>${pump.time}</td>`;
+                html += `<td>${pump.volumeInmL} mL</td></tr>`;
+            });
+            $('#milk-data').html(html);
 
-    $("#new-milk").on("click", function(e){
+        });
+    }
+    displayMilk();
+
+    $("#new-milk").mousedown(function(e){
        e.preventDefault();
 
        let month = $("#month").val();
@@ -59,26 +62,21 @@ document.getElementById("minutes").value = mm;
            whiteRussian = false;
        }
 
-       let Pump = {
-           "volume" : volume,
-           "date" : date,
-           "time" : time,
-           "whiteRussian" : whiteRussian
-       };
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $.post({
             url: `/milk/${volume}/${date}/${time}/${whiteRussian}`,
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(Pump),
             beforeSend: function (jqXHR) {
                 jqXHR.setRequestHeader('X-CSRF-Token', token,)
             },
             dataType: "json",
-            success: function (html) {
-                console.log(html);
-            }
-        });
 
+        })
+
+        $('#new-milk').mouseup(function (e) {
+            e.preventDefault();
+            displayMilk();
+        })
 
     });
