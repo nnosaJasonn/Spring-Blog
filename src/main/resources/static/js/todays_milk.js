@@ -28,11 +28,19 @@ document.getElementById("minutes").value = min;
 
             console.log(pumps);
             var html = '';
+            let total = 0;
+            let count = 0;
             pumps.forEach(function (pump) {
                 html += `<tr></tr></th><td>${pump.date}</td>`;
                 html += `<td>${pump.time}</td>`;
                 html += `<td>${pump.volumeInmL} mL</td></tr>`;
+                total += pump.volumeInmL;
+                count +=1;
             });
+            console.log(total);
+
+            $('#total').html(total + " mL");
+            $("#avg").html((total/count).toFixed(2) + " mL");
             $('#milk-data').html(html);
 
         });
